@@ -70,13 +70,18 @@ function bindPageEvents() {
   });
 }
 
-function render() {
+function render(moveFocus = false) {
   const route = currentRoute();
   document.querySelector('#page').innerHTML = templates[route]();
-  document.querySelectorAll('[data-route]').forEach((link) => link.classList.toggle('active', link.dataset.route === route));
+  document.querySelectorAll('[data-route]').forEach((link) => {
+    const active = link.dataset.route === route;
+    link.classList.toggle('active', active);
+    active ? link.setAttribute('aria-current', 'page') : link.removeAttribute('aria-current');
+  });
   document.title = `Conecta Esperança | ${route === 'inicio' ? 'Início' : route[0].toUpperCase() + route.slice(1)}`;
   bindPageEvents();
   window.scrollTo(0, 0);
+  if (moveFocus) document.querySelector('#conteudo').focus();
 }
 
 const menuButton = document.querySelector('.menu-toggle');
@@ -102,6 +107,14 @@ nav.addEventListener('click', () => {
   nav.classList.remove('open');
   menuButton.setAttribute('aria-expanded', 'false');
 });
-window.addEventListener('hashchange', render);
+document.querySelector('a[href="#contato"]').addEventListener('click', (event) => {
+  event.preventDefault();
+  document.querySelector('#contato').scrollIntoView();
+});
+document.querySelector('.skip-link').addEventListener('click', (event) => {
+  event.preventDefault();
+  document.querySelector('#conteudo').focus();
+});
+window.addEventListener('hashchange', () => render(true));
 if (!location.hash) history.replaceState(null, '', '#/inicio');
 render();
