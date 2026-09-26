@@ -42,11 +42,28 @@ function bindPageEvents() {
   };
 
   Object.entries(formatters).forEach(([id, formatter]) => form.elements[id].addEventListener('input', (event) => event.target.value = formatter(event.target.value)));
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const status = form.querySelector('.form-status');
-    status.hidden = false;
-    status.textContent = form.checkValidity() ? 'Cadastro preenchido corretamente.' : 'Revise os campos obrigatórios.';
+
+    if (!form.checkValidity()) {
+      status.hidden = false;
+      status.className = 'form-status error';
+      status.textContent = 'Revise os campos obrigatórios antes de continuar.';
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+
+    form.reset();
+    status.hidden = true;
+
+    await Swal.fire({
+      icon: 'success',
+      title: 'Cadastro realizado',
+      text: 'Obrigado por querer fazer parte da Conecta Esperança.',
+      confirmButtonText: 'Entendi',
+      confirmButtonColor: '#176b4d'
+    });
   });
 }
 
