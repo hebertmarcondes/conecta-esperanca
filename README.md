@@ -1,33 +1,101 @@
 # Conecta Esperança
 
-Site institucional fictício de uma ONG dedicada à educação, inclusão, tecnologia e voluntariado.
+Aplicação web de uma organização social fictícia dedicada a educação, inclusão, tecnologia e voluntariado. O projeto foi desenvolvido como uma SPA (Single Page Application) em JavaScript e utiliza Vite para desenvolvimento e build de produção.
 
-## Versão 1.2.1
+## Funcionalidades
 
-A aplicação foi convertida para SPA e apresenta três telas por meio de rotas com hash:
+- navegação entre Início, Projetos e Faça parte sem recarregar a página;
+- projetos criados dinamicamente a partir de dados JavaScript;
+- formulário responsivo com validação e máscaras de CPF, telefone e CEP;
+- armazenamento local dos cadastros;
+- confirmação de envio com SweetAlert2;
+- menu adaptado para celulares e tablets;
+- modo de alto contraste com preferência persistente;
+- navegação por teclado, link para pular conteúdo e atributos ARIA;
+- imagens WebP com carregamento tardio na página de projetos.
 
-- `#/inicio`: apresentação da organização;
-- `#/projetos`: iniciativas criadas por templates JavaScript;
-- `#/cadastro`: formulário com validações e máscaras.
+## Tecnologias e ferramentas
 
-O conteúdo é atualizado sem recarregar a página. O layout utiliza CSS Grid, Flexbox e media queries para adaptação a computadores, tablets e celulares.
+- HTML5 semântico;
+- CSS3, Grid Layout, Flexbox e media queries;
+- JavaScript e ES6 Modules;
+- localStorage;
+- SweetAlert2;
+- Vite;
+- Git, GitHub e Sublime Text.
 
-O formulário valida os campos, aplica máscaras e armazena os cadastros no `localStorage`. O envio concluído apresenta uma confirmação com SweetAlert2. A preferência de alto contraste também permanece salva no navegador.
+## Pré-requisitos
 
-Esta correção preserva a rota atual ao acessar o contato e direciona o foco para o conteúdo após a navegação, melhorando o uso por teclado e leitores de tela.
+- Node.js 20 ou superior;
+- npm;
+- navegador moderno.
 
-## Tecnologias
+## Instalação e execução
 
-- HTML5
-- CSS3
-- JavaScript
-- localStorage
-- SweetAlert2
-- Git e GitHub
+```bash
+git clone https://github.com/hebertmarcondes/conecta-esperanca.git
+cd conecta-esperanca
+npm install
+npm run dev
+```
 
-## Execução
+O terminal mostrará o endereço local da aplicação.
 
-Abra o arquivo `index.html` em um navegador moderno.
+## Build de produção
+
+```bash
+npm run build
+npm run preview
+```
+
+O Vite gera os arquivos minificados na pasta `dist`.
+
+## Estrutura do projeto
+
+```text
+conecta-esperanca/
+|-- public/images/       # imagens WebP
+|-- src/
+|   |-- js/
+|   |   |-- data/       # dados dos projetos
+|   |   |-- services/   # acesso ao localStorage
+|   |   |-- templates/  # conteúdo das telas
+|   |   |-- utils/      # máscaras do formulário
+|   |   |-- main.js     # eventos e inicialização
+|   |   `-- router.js   # controle das rotas
+|   `-- styles/         # Design System e responsividade
+|-- index.html
+`-- package.json
+```
+
+## Testes e validação
+
+Foram verificados a navegação SPA, o menu responsivo, as máscaras, a validação do formulário, a persistência, o alto contraste e o carregamento das imagens. A versão de produção é validada com `npm run build`. O Console, o Network e as ferramentas responsivas do navegador auxiliam a inspeção manual.
+
+## Versionamento
+
+O desenvolvimento segue um fluxo baseado em GitFlow:
+
+- `main`: versões estáveis;
+- `develop`: integração das funcionalidades;
+- `feature/*`: desenvolvimento isolado;
+- `hotfix/*`: correções urgentes de produção.
+
+Os commits seguem Conventional Commits e as releases utilizam Versionamento Semântico:
+
+- `v1.0.0`: interface funcional e responsiva;
+- `v1.1.0`: SPA e templates dinâmicos;
+- `v1.2.0`: formulário, localStorage e feedback visual;
+- `v1.2.1`: correções de eventos e navegação;
+- `v1.3.0`: ES6 Modules, Vite, acessibilidade e otimizações.
+
+## Deploy
+
+O projeto está preparado para integração com a Vercel usando `npm run build` e o diretório de saída `dist`. A branch de produção é a `main`.
+
+## Privacidade
+
+Este é um projeto acadêmico. Os dados preenchidos não são enviados para um servidor e permanecem somente no `localStorage` do navegador usado no teste.
 
 ## Autor
 
