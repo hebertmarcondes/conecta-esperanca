@@ -380,7 +380,9 @@ ul {
 
 	.hero {
 		min-height: 700px;
-		background-position: 65% center;
+		background:
+			linear-gradient(rgba(0, 45, 31, 0.78), rgba(0, 45, 31, 0.9)),
+			url("../image/BannerCel.jpeg") center / cover;
 	}
 
 	.hero-conteudo {
@@ -393,6 +395,11 @@ ul {
 
 	.hero-botoes {
 		justify-content: center;
+	}
+
+	.hero-botoes .botao {
+		width: 100%;
+		text-align: center;
 	}
 
 	
