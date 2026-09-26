@@ -4,32 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conecta Esperança: educação, inclusão e transformação social.">
+    <meta name="theme-color" content="#176b4d">
     <title>Conecta Esperança</title>
-    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
-    <header class="site-header">
-      <a class="brand" href="#/inicio"><span>Conecta</span> Esperança</a>
-      <button class="menu-toggle" type="button" aria-controls="menu-principal" aria-expanded="false">☰ <span>Menu</span></button>
-      <nav class="main-nav" id="menu-principal" aria-label="Navegação principal">
-        <a data-route="inicio" href="#/inicio">Início</a>
-        <a data-route="projetos" href="#/projetos">Projetos</a>
-        <a data-route="cadastro" href="#/cadastro">Faça parte</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <button class="contrast-toggle" type="button" aria-pressed="false" title="Alternar alto contraste">◐ <span class="contrast-label">Alto contraste</span></button>
-    </header>
-    <main id="conteudo" tabindex="-1"><div id="page"></div></main>
-    <footer class="site-footer" id="contato">
-      <div class="container footer-grid">
-        <div><h2>Conecta Esperança</h2><p>Conectando pessoas, transformando realidades.</p></div>
-        <div><h3>Navegação</h3><a href="#/inicio">Início</a><a href="#/projetos">Projetos</a><a href="#/cadastro">Faça parte</a></div>
-        <div><h3>Contato</h3><a href="mailto:contato@conectaesperanca.org">contato@conectaesperanca.org</a><a href="tel:+5515974028525">(15) 97402-8525</a></div>
-      </div>
-      <div class="footer-bottom"><p>&copy; 2026 Conecta Esperança. Todos os direitos reservados.</p></div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/app.js"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
