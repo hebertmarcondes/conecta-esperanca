@@ -2,15 +2,15 @@
 
 Site institucional fictício de uma ONG dedicada à educação, inclusão, tecnologia e voluntariado.
 
-## Versão 1.0.0
+## Versão 1.1.0
 
-A primeira versão contém três páginas HTML5 semânticas:
+A aplicação foi convertida para SPA e apresenta três telas por meio de rotas com hash:
 
-- `index.html`: apresentação da organização;
-- `projetos.html`: iniciativas sociais;
-- `cadastro.html`: formulário de voluntariado com validações e máscaras.
+- `#/inicio`: apresentação da organização;
+- `#/projetos`: iniciativas criadas por templates JavaScript;
+- `#/cadastro`: formulário com validações e máscaras.
 
-O layout utiliza CSS Grid, Flexbox e media queries para adaptação a computadores, tablets e celulares.
+O conteúdo é atualizado sem recarregar a página. O layout utiliza CSS Grid, Flexbox e media queries para adaptação a computadores, tablets e celulares.
 
 ## Tecnologias
 
