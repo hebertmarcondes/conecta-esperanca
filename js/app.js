@@ -54,6 +54,9 @@ function bindPageEvents() {
       return;
     }
 
+    const registrations = JSON.parse(localStorage.getItem('conectaEsperancaCadastros') || '[]');
+    registrations.push({ ...Object.fromEntries(new FormData(form)), cadastradoEm: new Date().toISOString() });
+    localStorage.setItem('conectaEsperancaCadastros', JSON.stringify(registrations));
     form.reset();
     status.hidden = true;
 
@@ -78,6 +81,18 @@ function render() {
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
+const contrastButton = document.querySelector('.contrast-toggle');
+
+const savedContrast = localStorage.getItem('conectaEsperancaAltoContraste') === 'true';
+document.body.classList.toggle('high-contrast', savedContrast);
+contrastButton.setAttribute('aria-pressed', String(savedContrast));
+
+contrastButton.addEventListener('click', () => {
+  const enabled = !document.body.classList.contains('high-contrast');
+  document.body.classList.toggle('high-contrast', enabled);
+  contrastButton.setAttribute('aria-pressed', String(enabled));
+  localStorage.setItem('conectaEsperancaAltoContraste', String(enabled));
+});
 menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!open));

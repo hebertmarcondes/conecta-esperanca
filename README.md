@@ -12,13 +12,14 @@ A aplicação foi convertida para SPA e apresenta três telas por meio de rotas 
 
 O conteúdo é atualizado sem recarregar a página. O layout utiliza CSS Grid, Flexbox e media queries para adaptação a computadores, tablets e celulares.
 
-O formulário valida os campos, aplica máscaras e apresenta uma confirmação de envio com SweetAlert2.
+O formulário valida os campos, aplica máscaras e armazena os cadastros no `localStorage`. O envio concluído apresenta uma confirmação com SweetAlert2. A preferência de alto contraste também permanece salva no navegador.
 
 ## Tecnologias
 
 - HTML5
 - CSS3
 - JavaScript
+- localStorage
 - SweetAlert2
 - Git e GitHub
 
