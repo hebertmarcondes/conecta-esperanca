@@ -42,11 +42,31 @@ function bindPageEvents() {
   };
 
   Object.entries(formatters).forEach(([id, formatter]) => form.elements[id].addEventListener('input', (event) => event.target.value = formatter(event.target.value)));
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const status = form.querySelector('.form-status');
-    status.hidden = false;
-    status.textContent = form.checkValidity() ? 'Cadastro preenchido corretamente.' : 'Revise os campos obrigatórios.';
+
+    if (!form.checkValidity()) {
+      status.hidden = false;
+      status.className = 'form-status error';
+      status.textContent = 'Revise os campos obrigatórios antes de continuar.';
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+
+    const registrations = JSON.parse(localStorage.getItem('conectaEsperancaCadastros') || '[]');
+    registrations.push({ ...Object.fromEntries(new FormData(form)), cadastradoEm: new Date().toISOString() });
+    localStorage.setItem('conectaEsperancaCadastros', JSON.stringify(registrations));
+    form.reset();
+    status.hidden = true;
+
+    await Swal.fire({
+      icon: 'success',
+      title: 'Cadastro realizado',
+      text: 'Obrigado por querer fazer parte da Conecta Esperança.',
+      confirmButtonText: 'Entendi',
+      confirmButtonColor: '#176b4d'
+    });
   });
 }
 
@@ -61,6 +81,18 @@ function render() {
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
+const contrastButton = document.querySelector('.contrast-toggle');
+
+const savedContrast = localStorage.getItem('conectaEsperancaAltoContraste') === 'true';
+document.body.classList.toggle('high-contrast', savedContrast);
+contrastButton.setAttribute('aria-pressed', String(savedContrast));
+
+contrastButton.addEventListener('click', () => {
+  const enabled = !document.body.classList.contains('high-contrast');
+  document.body.classList.toggle('high-contrast', enabled);
+  contrastButton.setAttribute('aria-pressed', String(enabled));
+  localStorage.setItem('conectaEsperancaAltoContraste', String(enabled));
+});
 menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!open));
